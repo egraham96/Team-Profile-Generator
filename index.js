@@ -1,9 +1,9 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-const Employee = require('lib/employee');
-const Manager = require('lib/manager');
-const Engineer = require('lib/engineer');
-const Intern = require('lib/intern');
+//const Employee = require('./lib/employee');
+const Manager = require('./lib/manager');
+const Engineer = require('./lib/engineer');
+const Intern = require('./lib/intern');
 
 let officeteam = [];
 console.log('Welcome to the Team Profile Generator.\n',
@@ -87,7 +87,7 @@ function engineerInput() {
             Engineergh = data.Engineergh;
             NewEngineer = new Engineer(Engineername, Engineeremail, Engineerid, Engineergh)
             officeteam.push(NewEngineer);
-            Nextemployee()
+            Final()
         });
 }
 function internInput() {
@@ -123,7 +123,7 @@ function internInput() {
         });
 }
 
-function Final(){
+function Final() {
     inquirer.prompt([{
         type: 'rawlist',
         name: 'more',
@@ -134,17 +134,67 @@ function Final(){
         choice = data.more;
         if (choice === 'Yes') {
             Nextemployee()
-        } else { GenerateHTML() }
+        } else {
+            generateHTML()
+        }
     })
 }
 
-function GenerateHTML(){}
+function generateHTML() {
+    for (let i = 0; i < officeteam.length; i++) {
+        if (officeteam[i].getRole() === 'Manager') {
+            Mcard = `<h4>Manager</h4>
+        <p>Name:${officeteam[i].getName()}</p>
+        <p>Email Address:<a href='mailto:${officeteam[i].getEmail()}'>${officeteam[i].getEmail()}</a></p>
+        <p>Employee Id:${officeteam[i].getId()}</p>
+        <p>Office Number:${officeteam[i].getOfficeNumber()}</p>`
+        }
+        else if (officeteam[i].getRole() === 'Engineer') {
+            Ecard = `<div class="card"><h4>Engineer</h4>
+            <p>Name:${officeteam[i].getName()}</p>
+        <p>Email Address:<a href='mailto:${officeteam[i].getEmail()}'>${officeteam[i].getEmail()}</a></p>
+        <p>Employee Id:${officeteam[i].getId()}</p>
+        <p>Office Number:${officeteam[i].getGithub()}</p>
+        </div>`}
+        else if (officeteam[i].getRole() === 'Intern') {
+        Icard = `<div class="card"><h4>Intern</h4>
+        <p>Name:${officeteam[i].getName()}</p>
+        <p>Email Address:<a href='mailto:${officeteam[i].getEmail()}'>${officeteam[i].getEmail()}</a></p>
+        <p>Employee Id:${officeteam[i].getId()}</p>
+        <p>Intern's School:${officeteam[i].getSchool()}</p>
+        </div>`}
+        }
 
-// Function used to write the generated HTML file
-fs.writeFile('./dist/index.html', 'html', (err) => {
+
+
+    const HTMLbody = `<!DOCTYPE html>
+<html>
+<head>
+    <title>Team Profile</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./reset.css" />
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Orbitron">
+</head>
+<body>
+
+    <header>
+        <h1>My Workplace Team</h1>
+    </header><main><br><div id="Mcontainer">${Mcard}</div>
+    <div id="Econtainer">${Ecard}${Icard}
+    </div>
+</main>
+    <script src=index.js></script>
+</body>
+</html>`;
+
+
+// Used to write the generated HTML file
+fs.writeFile('./dist/index.html', HTMLbody, (err) => {
     if (err) {
         throw err;
     }
-})
+})}
 
 managerInput();

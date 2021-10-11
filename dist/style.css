@@ -12,7 +12,7 @@ header h1 {
 
 #Mcontainer{margin:auto;
 height:200px;
-width:222px;
+width:300px;
 border:1px solid black;}
 
 #Econtainer {margin:5px;
@@ -26,6 +26,6 @@ border:1px solid black;}
     margin: 4px;
     display: inline;
     height: 200px;
-    width: 18%;
+    width: 25%;
     border: 2px solid black;
 }
