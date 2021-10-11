@@ -49,14 +49,96 @@ function Nextemployee() {
         name: 'type',
         message: 'Is the next employee an engineer or an intern?',
         choices: ['Engineer', 'Intern'],
-    },
+    }
     ]).then((data) => {
         employeetype = data.type;
-        if (employeetype === 'Engineer') { engineerInput() }
-        else { internInput() }
+        if (employeetype === 'Engineer') {
+            engineerInput()
+        } else { internInput() }
     })
 }
 
+function engineerInput() {
+    inquirer.prompt([{
+        type: 'input',
+        name: 'Engineername',
+        message: "What is the engineer's name?",
+    },
+    {
+        type: 'input',
+        name: 'Engineeremail',
+        message: "What is the engineer's email address?",
+    },
+    {
+        type: 'input',
+        name: 'Engineerid',
+        message: "What is the engineer's employee ID?",
+    },
+    {
+        type: 'input',
+        name: 'Engineergh',
+        message: "What is the engineer's Github username?",
+    }
+    ])
+        .then((data) => {
+            Engineername = data.Engineername;
+            Engineeremail = data.Engineeremail;
+            Engineerid = data.Engineerid;
+            Engineergh = data.Engineergh;
+            NewEngineer = new Engineer(Engineername, Engineeremail, Engineerid, Engineergh)
+            officeteam.push(NewEngineer);
+            Nextemployee()
+        });
+}
+function internInput() {
+    inquirer.prompt([{
+        type: 'input',
+        name: 'Internname',
+        message: "What is the intern's name?",
+    },
+    {
+        type: 'input',
+        name: 'Internemail',
+        message: "What is the intern's email?",
+    },
+    {
+        type: 'input',
+        name: 'Internid',
+        message: "What is the intern's employee ID?",
+    },
+    {
+        type: 'input',
+        name: 'Internschool',
+        message: "What school does the intern attend?",
+    },
+    ])
+        .then((data) => {
+            Internname = data.Internname;
+            Internemail = data.Internemail;
+            Internid = data.Internid;
+            Internschool = data.Internschool;
+            NewIntern = new Intern(Internname, Internemail, Internid, Internschool)
+            officeteam.push(NewIntern);
+            Final()
+        });
+}
+
+function Final(){
+    inquirer.prompt([{
+        type: 'rawlist',
+        name: 'more',
+        message: 'Would you like to input another employee?',
+        choices: ['Yes', 'No'],
+    }
+    ]).then((data) => {
+        choice = data.more;
+        if (choice === 'Yes') {
+            Nextemployee()
+        } else { GenerateHTML() }
+    })
+}
+
+function GenerateHTML(){}
 
 // Function used to write the generated HTML file
 fs.writeFile('./dist/index.html', 'html', (err) => {
