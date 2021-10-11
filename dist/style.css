@@ -1,0 +1,31 @@
+header {
+    background-color: rgb(179, 250, 226);
+    border-bottom: 2px solid black;
+}
+
+header h1 {
+    font-family: 'Orbitron';
+    font-size: 48px;
+    text-align: center;
+}
+
+
+#Mcontainer{margin:auto;
+height:200px;
+width:222px;
+border:1px solid black;}
+
+#Econtainer {margin:5px;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.card {
+    margin: 4px;
+    display: inline;
+    height: 200px;
+    width: 18%;
+    border: 2px solid black;
+}
