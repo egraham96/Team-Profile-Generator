@@ -13,7 +13,19 @@ header h1 {
 #Mcontainer{margin:auto;
 height:200px;
 width:300px;
-border:1px solid black;}
+border: 2px solid black;}
+
+#Mbox {text-align:center;width:296px;
+height:50px;
+background-color:darkgray;}
+
+#Ebox{text-align:center;width:100%;
+height:50px;
+background-color:darkcyan}
+
+#Ibox{text-align:center;width:100%;
+height:50px;
+background-color: darkkhaki;}
 
 #Econtainer {margin:5px;
     justify-content: center;

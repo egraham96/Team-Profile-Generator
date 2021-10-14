@@ -15,7 +15,6 @@ Download this repository. Install the inquirer and FS node modules (For example,
 
 
 ## Deployed Links:
-* [See Live Site](https://egraham96.github.io/homework-assignment-06/)
 * [Link to GitHub Repo](https://github.com/egraham96/Team-Profile-Generator)
 
 ## Preview of Working Site:

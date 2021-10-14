@@ -141,28 +141,31 @@ function Final() {
 }
 
 function generateHTML() {
+    let cardhtml=``;
     for (let i = 0; i < officeteam.length; i++) {
         if (officeteam[i].getRole() === 'Manager') {
-            Mcard = `<h4>Manager</h4>
-        <p>Name:${officeteam[i].getName()}</p>
-        <p>Email Address:<a href='mailto:${officeteam[i].getEmail()}'>${officeteam[i].getEmail()}</a></p>
-        <p>Employee Id:${officeteam[i].getId()}</p>
-        <p>Office Number:${officeteam[i].getOfficeNumber()}</p>`
+            Mcard = `<div id="Mbox"><h4>Manager</h4></div><br>
+        <p><b>Name:</b> ${officeteam[i].getName()}</p><br>
+        <p><b>Email Address:</b><a href='mailto:${officeteam[i].getEmail()}'>${officeteam[i].getEmail()}</a></p><br>
+        <p><b>Employee Id:</b>${officeteam[i].getId()}</p><br>
+        <p><b>Office Number:</b>${officeteam[i].getOfficeNumber()}</p>`
         }
         else if (officeteam[i].getRole() === 'Engineer') {
-            Ecard = `<div class="card"><h4>Engineer</h4>
-            <p>Name:${officeteam[i].getName()}</p>
-        <p>Email Address:<a href='mailto:${officeteam[i].getEmail()}'>${officeteam[i].getEmail()}</a></p>
-        <p>Employee Id:${officeteam[i].getId()}</p>
-        <p>Office Number:${officeteam[i].getGithub()}</p>
-        </div>`}
+            Ecard = `<div class="card"><div id="Ebox"><h4>Engineer</h4></div><br>
+            <p><b>Name:</b> ${officeteam[i].getName()}</p><br>
+        <p><b>Email Address:</b> <a href='mailto:${officeteam[i].getEmail()}'>${officeteam[i].getEmail()}</a></p><br>
+        <p><b>Employee Id:</b> ${officeteam[i].getId()}</p><br>
+        <p><b>Github:</b> ${officeteam[i].getGithub()}</p>
+        </div>`
+    cardhtml+=Ecard}
         else if (officeteam[i].getRole() === 'Intern') {
-        Icard = `<div class="card"><h4>Intern</h4>
-        <p>Name:${officeteam[i].getName()}</p>
-        <p>Email Address:<a href='mailto:${officeteam[i].getEmail()}'>${officeteam[i].getEmail()}</a></p>
-        <p>Employee Id:${officeteam[i].getId()}</p>
-        <p>Intern's School:${officeteam[i].getSchool()}</p>
-        </div>`}
+        Icard = `<div class="card"><div id="Ibox"><h4>Intern</h4></div><br>
+        <p><b>Name:</b> ${officeteam[i].getName()}</p><br>
+        <p><b>Email Address:</b> <a href='mailto:${officeteam[i].getEmail()}'>${officeteam[i].getEmail()}</a></p><br>
+        <p><b>Employee Id:</b> ${officeteam[i].getId()}</p><br>
+        <p><b>Intern's School:</b> ${officeteam[i].getSchool()}</p>
+        </div>`
+        cardhtml+=Icard}
         }
 
 
@@ -182,7 +185,7 @@ function generateHTML() {
     <header>
         <h1>My Workplace Team</h1>
     </header><main><br><div id="Mcontainer">${Mcard}</div>
-    <div id="Econtainer">${Ecard}${Icard}
+    <div id="Econtainer">${cardhtml}
     </div>
 </main>
     <script src=index.js></script>
