@@ -1,32 +1,32 @@
-const Intern = require('../lib/intern');
 
-const intern = new Intern ('Emma', 'eeg4@uw.edu', '21', 'University of Washington');
+const Intern= require('../lib/intern');
+
+const intern1 = new Intern ('Emma', 'eeg4@uw.edu', '10', 'UW');
 
 describe( "Employee", () => {
 
     it('should return the employee name', ()=> {
-        expect(intern.getName()).toEqual('Emma')
+        expect(intern1.getName()).toEqual('Emma')
 
     });    
 
 
     it('should return the employee email', ()=> {
-        expect(intern.getEmail()).toEqual('eeg4@uw.edu')
+        expect(intern1.getEmail()).toEqual('eeg4@uw.edu')
     });
 
     it('should return the employee id', ()=> {
-      expect(intern.getId()).toEqual('21')
+      expect(intern1.getId()).toEqual('10')
   });
 
     it('should return the github username of the engineer', ()=> {
-        expect(intern.getSchool()).toEqual('University of Washington')
+        expect(intern1.getSchool()).toEqual('UW')
     });
 
     it('should return the employee role', ()=> {
-        expect(intern.getRole()).toEqual('Intern')
+        expect(intern1.getRole()).toEqual('Intern')
     });
 
 
 
 })
-
